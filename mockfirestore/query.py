@@ -34,7 +34,7 @@ class Query:
         if self.orders:
             for key, direction in self.orders:
                 doc_snapshots = sorted(doc_snapshots,
-                                       key=lambda doc: doc.to_dict()[key],
+                                       key=lambda doc: doc.id if key == "__name__" else doc.to_dict()[key],
                                        reverse=direction == 'DESCENDING')
         if self._start_at:
             document_fields_or_snapshot, before = self._start_at
